@@ -1,4 +1,4 @@
-import todoReduce from '../../src/redux/TodoReducer';
+import todosReduce from '../../src/redux/TodosReducer';
 
 describe('TodoReducer', () => {
     it('can add todo', () => {
@@ -14,7 +14,7 @@ describe('TodoReducer', () => {
             completed: false
         }];
 
-        expect(todoReduce(stateBefore, action)).toEqual(stateAfter);
+        expect(todosReduce(stateBefore, action)).toEqual(stateAfter);
         expect(stateBefore).toEqual([]);
         expect(action).toEqual(
             {
@@ -22,7 +22,7 @@ describe('TodoReducer', () => {
                 id: 0,
                 text: 'Learn Redux'
             }
-        )
+        );
     });
 
     it('can toogle todo', () => {
@@ -39,7 +39,7 @@ describe('TodoReducer', () => {
             }
         ];
         const action = {
-            type: 'TOOGLE_TODO',
+            type: 'TOGGLE_TODO',
             id: 1
         };
         const stateAfter = [
@@ -54,7 +54,7 @@ describe('TodoReducer', () => {
                 completed: true
             }
         ];
-        expect(todoReduce(stateBefore, action)).toEqual(stateAfter);
+        expect(todosReduce(stateBefore, action)).toEqual(stateAfter);
         expect(stateBefore).toEqual([
                 {
                     id: 0,
@@ -70,7 +70,7 @@ describe('TodoReducer', () => {
         );
         expect(action).toEqual(
             {
-                type: 'TOOGLE_TODO',
+                type: 'TOGGLE_TODO',
                 id: 1
             }
         );
