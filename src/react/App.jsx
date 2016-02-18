@@ -1,26 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { newCountReduxStore } from '../redux/Redux';
-import Counter from '../redux/Counter';
+import TodoApp from '../redux/TodoApp';
+import { createStore } from 'redux';
+import AppReducer from '../redux/AppReducer';
 
-const store = newCountReduxStore();
+const store = createStore(AppReducer, undefined, window.devToolsExtension ? window.devToolsExtension() : undefined);
+
+let nextTodoId = 0;
+const onAdd = (text) => {
+    store.dispatch({
+        type: 'ADD_TODO',
+        text,
+        id: nextTodoId++
+    });
+};
 
 const render = () => {
     ReactDOM.render(
-        <Counter
-            value={store.getState()}
-            onIncrement={() => {
-                store.dispatch({
-                    type: 'INCREMENT'
-                });
-                }}
-            onDecrement={() => {
-                store.dispatch({
-                    type: 'DECREMENT'
-                });
-                }}
-        />
-        , document.getElementById('appContent'));
+        <TodoApp
+            todos={store.getState().todos}
+            onAdd={onAdd}
+        />, document.getElementById('appContent'));
 };
 
 store.subscribe(render);
