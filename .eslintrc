@@ -19,7 +19,10 @@
       "always"
     ],
     "no-var": 2,
-    "object-shorthand": 1,
+    "object-shorthand": [
+      2,
+      "always"
+    ],
     "prefer-arrow-callback": 1,
     "prefer-const": 1,
     "prefer-spread": 1,
@@ -33,15 +36,18 @@
         "argsIgnorePattern": "args"
       }
     ],
-    "arrow-parens": [
-      2,
-      "always"
-    ],
+    "arrow-parens": 0,
     "arrow-body-style": [
       2,
-      "always"
+      "as-needed"
     ],
-    "arrow-spacing": 1,
+    "arrow-spacing": [
+      2,
+      {
+        "before": true,
+        "after": true
+      }
+    ],
     "constructor-super": 1,
     "no-arrow-condition": 2,
     "no-class-assign": 2,

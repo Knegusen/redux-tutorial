@@ -1,4 +1,4 @@
-import { counter, newCountReduxStore, newCountStore} from '../src/Redux';
+import { counter, newCountReduxStore, newCountStore} from '../../src/redux/Redux';
 
 describe('Redux', () => {
     describe('counter', () => {
