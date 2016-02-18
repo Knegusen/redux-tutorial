@@ -1,4 +1,4 @@
-import { counter, newCountReduxStore} from '../src/Redux';
+import { counter, newCountReduxStore, newCountStore} from '../src/Redux';
 
 describe('Redux', () => {
     describe('counter', () => {
@@ -15,6 +15,15 @@ describe('Redux', () => {
     describe('countReduxStore', () => {
         it('works', () => {
             const countStore = newCountReduxStore();
+            expect(countStore.getState()).toBe(0);
+            countStore.dispatch({type: 'INCREMENT'});
+            expect(countStore.getState()).toBe(1);
+        });
+    });
+
+    describe('countStore', () => {
+        it('works', () => {
+            const countStore = newCountStore();
             expect(countStore.getState()).toBe(0);
             countStore.dispatch({type: 'INCREMENT'});
             expect(countStore.getState()).toBe(1);
