@@ -37,6 +37,13 @@ export function incrementCounter(list, index) {
     ];
 }
 
+export function toggleTodo(todo) {
+    return {
+        ...todo,
+        completed: !todo.completed
+    };
+}
+
 function newStore(reducer) {
     let state;
     let listeners = [];

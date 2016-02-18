@@ -4,7 +4,8 @@ import {
     newCountStore,
     addCounter,
     removeCounter,
-    incrementCounter
+    incrementCounter,
+    toggleTodo
 } from '../../src/redux/Redux';
 
 describe('Redux', () => {
@@ -64,6 +65,28 @@ describe('Redux', () => {
 
             expect(incrementCounter(listBefore, 1)).toEqual(listAfter);
             expect(listBefore).toEqual([0, 10, 20]);
+        });
+    });
+
+    describe('toogleTodo', () => {
+        it('works', () => {
+            const todoBefore = {
+                id: 0,
+                text: 'Learn Redux',
+                completed: false
+            };
+            const todoAfter = {
+                id: 0,
+                text: 'Learn Redux',
+                completed: true
+            };
+
+            expect(toggleTodo(todoBefore)).toEqual(todoAfter);
+            expect(todoBefore).toEqual({
+                id: 0,
+                text: 'Learn Redux',
+                completed: false
+            });
         });
     });
 });
