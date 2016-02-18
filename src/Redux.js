@@ -1,3 +1,5 @@
+import { createStore } from 'redux';
+
 export function counter(state = 0, action) {
     if (action.type == 'INCREMENT') {
         return state + 1;
@@ -6,4 +8,8 @@ export function counter(state = 0, action) {
     } else {
         return state;
     }
+}
+
+export function newCountReduxStore() {
+    return createStore(counter);
 }
