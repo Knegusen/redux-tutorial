@@ -15,7 +15,10 @@ export default React.createClass({
 
     getTodos(){
         return this.props.todos.map(todo => (
-            <li key={ todo.id }>
+            <li key={ todo.id }
+                onClick={this.onTodoClick.bind(this, todo.id)}
+                style={{textDecoration: todo.completed ? 'line-through' : 'none'}}
+            >
                 { todo.text }
             </li>
         ));
@@ -25,5 +28,9 @@ export default React.createClass({
         const text = this.props.onAdd(this._input.value);
         this._input.value = '';
         return text;
+    },
+
+    onTodoClick(id) {
+        this.props.onTodoClick({id});
     }
 });

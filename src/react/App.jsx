@@ -15,11 +15,19 @@ const onAdd = (text) => {
     });
 };
 
+const onTodoClick = ({id}) => {
+    store.dispatch({
+        type: 'TOGGLE_TODO',
+        id
+    });
+};
+
 const render = () => {
     ReactDOM.render(
         <TodoApp
             todos={store.getState().todos}
             onAdd={onAdd}
+            onTodoClick={onTodoClick}
         />, document.getElementById('appContent'));
 };
 
