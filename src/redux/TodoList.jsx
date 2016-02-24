@@ -9,7 +9,7 @@ export default ({todos, filter, onTodoClick}) => {
             <Todo
                 key={ todo.id }
                 {...todo}
-                onClick={onTodoClick.bind(null, todo.id)}
+                onClick={() => onTodoClick(todo.id)}
             />
         ))}
     </ul>);
