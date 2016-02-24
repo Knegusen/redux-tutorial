@@ -34,12 +34,12 @@ describe('Filterlink', () => {
                     const props = {
                         currentFilter: 'show_all',
                         filter: 'show_completed',
-                        onClick: () => ({})
+                        onLinkClick: () => ({})
                     };
-                    spyOn(props, 'onClick');
+                    spyOn(props, 'onLinkClick');
                     const component = shallow(<FilterLink {...props} />);
                     component.find('a').simulate('click');
-                    expect(props.onClick).toHaveBeenCalledWith(props.filter);
+                    expect(props.onLinkClick).toHaveBeenCalledWith(props.filter);
                 });
             });
             it('is rendered with href #', () => {

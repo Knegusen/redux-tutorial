@@ -21,7 +21,7 @@ export default ({onFilterClick, currentFilter}) => {
                 <span key={index}>
                     <FilterLink
                         filter={filterLink.filter}
-                        onClick={onFilterClick.bind(null, filterLink.filter)}
+                        onLinkClick={onFilterClick.bind(null, filterLink.filter)}
                         currentFilter={currentFilter}>
                         { filterLink.name }
                     </FilterLink>{' '}

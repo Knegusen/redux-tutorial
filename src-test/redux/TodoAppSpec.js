@@ -2,42 +2,20 @@ import React from 'react';
 import TodoApp from '../../src/redux/TodoApp';
 import FilterLinks from '../../src/redux/FilterLinks';
 import TodoList from '../../src/redux/TodoList';
-import { mount, shallow } from 'enzyme';
+import AddTodo from '../../src/redux/AddTodo';
+import { shallow } from 'enzyme';
 
 describe('TodoApp', () => {
 
-    describe('input', () => {
-        it('is rendered', () => {
-            const component = renderTodo(shallow);
-            expect(component.find('input').length).toBe(1);
-        });
-    });
-
-    describe('button', () => {
-        it('is rendered with add label', () => {
-            const component = renderTodo(shallow);
-            expect(component.find('.add').text()).toBe('Add todo');
-        });
-
-        describe('when clicked', () => {
-            it('calls prop onAdd', () => {
-                const funcs = {
-                    onAdd: () => ({}),
-                    onFilterClick: () => ({})
-                };
-                spyOn(funcs, 'onAdd');
-                const component = renderTodo(mount, [], funcs);
-                component.find('input').get(0).value = 'Test';
-                component.find('.add').simulate('click');
-                expect(funcs.onAdd).toHaveBeenCalledWith('Test');
-            });
-
-            it('clears input field', () => {
-                const component = renderTodo(mount);
-                component.find('input').get(0).value = 'Test';
-                component.find('.add').simulate('click');
-                expect(component.find('input').get(0).value).toBe('');
-            });
+    describe('AddTodo', () => {
+        it('is rendered with correct props', () => {
+            const funcs = {
+                onFilterClick: (filter) => filter,
+                onAdd: () => ({})
+            };
+            const component = renderTodo(shallow, [], funcs);
+            const addTodoProps = component.find(AddTodo).props();
+            expect(addTodoProps.onAdd).toBe(funcs.onAdd);
         });
     });
 

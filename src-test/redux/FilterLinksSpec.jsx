@@ -43,6 +43,6 @@ describe('FilterLinks', () => {
 function expectPropsForLinks(filterLinks, index, name, filter) {
     expect(filterLinks.at(index).props().children).toBe(name);
     expect(filterLinks.at(index).props().filter).toBe(filter);
-    expect(filterLinks.at(index).props().onClick()).toEqual(filter);
+    expect(filterLinks.at(index).props().onLinkClick()).toEqual(filter);
     expect(filterLinks.at(index).props().currentFilter).toEqual('SHOW_ALL');
 }

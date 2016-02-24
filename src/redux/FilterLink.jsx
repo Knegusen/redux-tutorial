@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default ({ children, filter, currentFilter, onClick }) => {
+export default ({ children, filter, currentFilter, onLinkClick }) => {
     if (filter === currentFilter) {
         return <span>{children}</span>;
     } else {
-        return <a href='#' onClick={onClick.bind(null, filter)}>{ children}</a>;
+        return <a href='#' onClick={() => {onLinkClick(filter);}}>{ children}</a>;
     }
 };
