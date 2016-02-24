@@ -15,19 +15,27 @@ const onAdd = (text) => {
     });
 };
 
-const onTodoClick = ({id}) => {
+const onTodoClick = (id) => {
     store.dispatch({
         type: 'TOGGLE_TODO',
         id
     });
 };
 
+const onFilterClick = (filter) => {
+    store.dispatch({
+        type: 'SET_VISIBILITY_FILTER',
+        filter
+    });
+};
+
 const render = () => {
     ReactDOM.render(
         <TodoApp
-            todos={store.getState().todos}
+            {...store.getState()}
             onAdd={onAdd}
             onTodoClick={onTodoClick}
+            onFilterClick={onFilterClick}
         />, document.getElementById('appContent'));
 };
 
