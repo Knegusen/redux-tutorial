@@ -1,6 +1,6 @@
 import React from 'react';
 import AddTodo from '../../src/redux/AddTodo';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 describe('AddTodo', () => {
     describe('button', () => {
@@ -18,12 +18,12 @@ describe('AddTodo', () => {
         };
 
         it('is rendered with add label', () => {
-            const component = shallow(<AddTodo />);
+            const component = mount(<AddTodo />, {context});
             expect(component.find('.add').text()).toBe('Add todo');
         });
 
         it('is rendered with input', () => {
-            const component = shallow(<AddTodo />);
+            const component = mount(<AddTodo />, {context});
             expect(component.find('input').length).toBe(1);
         });
 
@@ -54,7 +54,6 @@ describe('AddTodo', () => {
                 component.find('input').get(0).value = 'Test';
                 component.find('.add').simulate('click');
                 expect(component.find('input').get(0).value).toBe('');
-
             });
         });
     });
