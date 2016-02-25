@@ -1,48 +1,35 @@
-import React from 'react';
+import { connect } from 'react-redux';
 import TodoList from './TodoList';
 
-export default React.createClass({
+const mapStateToProps = (state) => ({
+    todos: getVisibleTodos(
+        state.todos,
+        state.visibilityFilter
+    )
+});
 
-    componentDidMount(){
-        this.unsubscribe = this.context.store.subscribe(() => {
-            this.forceUpdate();
+function getVisibleTodos(todos, filter) {
+    if (filter === 'SHOW_ALL') {
+        return todos;
+    } else if (filter === 'SHOW_COMPLETED') {
+        return todos.filter((todo) => todo.completed);
+    } else if (filter === 'SHOW_ACTIVE') {
+        return todos.filter((todo) => !todo.completed);
+    } else {
+        return todos;
+    }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    onTodoClick: (id) => {
+        dispatch({
+            type: 'TOGGLE_TODO',
+            id
         });
-    },
-
-    componentWillUnMount(){
-        this.unsubscribe();
-    },
-
-    contextTypes: {
-        store: React.PropTypes.object
-    },
-
-    render() {
-        const { store } = this.context;
-        const state = store.getState();
-        const todos = this.getVisibleTodos(state.todos, state.visibilityFilter);
-        const todoListProps = {
-            todos,
-            onTodoClick: (id) => {
-                store.dispatch({
-                    type: 'TOGGLE_TODO',
-                    id
-                });
-            }
-        };
-
-        return <TodoList {...todoListProps} />;
-    },
-
-    getVisibleTodos(todos, filter) {
-        if (filter === 'SHOW_ALL') {
-            return todos;
-        } else if (filter === 'SHOW_COMPLETED') {
-            return todos.filter((todo) => todo.completed);
-        } else if (filter === 'SHOW_ACTIVE') {
-            return todos.filter((todo) => !todo.completed);
-        } else {
-            return todos;
-        }
     }
 });
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TodoList);
