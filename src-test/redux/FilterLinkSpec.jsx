@@ -42,7 +42,7 @@ describe('FilterLink', () => {
 
             it('is calls store dispatch', () => {
                 const filter = 'filter';
-                const component = shallow(<FilterLink filter={filter}></FilterLink>, {context});
+                const component = shallow(<FilterLink filter={filter}/>, {context});
                 const link = component.find(Link);
                 link.props().onLinkClick();
                 expect(action).toEqual({
@@ -55,7 +55,8 @@ describe('FilterLink', () => {
         describe('isActive prop', () => {
             describe('when filter is same as visibility filter', () => {
                 it('is set to true', () => {
-                    const component = shallow(<FilterLink ></FilterLink>, {context});
+                    const filter = 'active filter';
+                    const component = shallow(<FilterLink filter={filter}/>, {context});
                     expect(component.find(Link).props().isActive).toBe(true);
                 });
             });
@@ -63,7 +64,7 @@ describe('FilterLink', () => {
             describe('when filter is not same as visibility filter', () => {
                 it('is set to true', () => {
                     const filter = 'not active filter';
-                    const component = shallow(<FilterLink filter={filter}></FilterLink>, {context});
+                    const component = shallow(<FilterLink filter={filter}/>, {context});
                     expect(component.find(Link).props().isActive).toBe(false);
                 });
             });
