@@ -1,55 +1,76 @@
 import React from 'react';
 import FilterLink from '../../src/redux/FilterLink';
+import Link from '../../src/redux/Link';
 import { shallow } from 'enzyme';
 
-describe('Filterlink', () => {
+describe('FilterLink', () => {
 
-    describe('when currentFilter is the same as filter', () => {
-        it('renders span with children', () => {
-            const text = 'children text';
-            const props = {
-                currentFilter: 'show_all',
-                filter: 'show_all'
-            };
-            const component = shallow(<FilterLink {...props} >{text}</FilterLink>);
-            expect(component.contains(<span>{text}</span>)).toBe(true);
+    let action;
+    let props;
+
+    beforeEach(() => {
+        props = {
+            store: {
+                getState: () => ({
+                    visibilityFilter: 'active filter'
+                }),
+                subscribe: () => () => ({}),
+                dispatch: (a) => {
+                    action = a;
+                }
+            },
+            filter: 'active filter',
+            children: 'children'
+        };
+    });
+
+    describe('componentDidMount', () => {
+        it('subscribes to store', () => {
+            //TODO: implement
         });
     });
 
-    describe('when currentFilter is not the same as filter', () => {
-        describe('link', () => {
-            it('renders link text', () => {
-                const text = 'children text';
-                const props = {
-                    currentFilter: 'show_all',
-                    filter: 'show_completed',
-                    onClick: () => ({})
-                };
-                const component = shallow(<FilterLink {...props}>{text}</FilterLink>);
-                expect(component.find('a').text()).toBe(text);
+    describe('componentWillUnmount', () => {
+        it('unsubscribes to store', () => {
+            //TODO: implement
+        });
+    });
+
+    describe('Link', () => {
+
+        describe('onLinkClick', () => {
+
+            it('is called as prop', () => {
+                const component = shallow(<FilterLink {...props}></FilterLink>);
+                const link = component.find(Link);
+                expect(typeof(link.props().onLinkClick)).toBe('function');
             });
 
-            describe('when clicked', () => {
-                it('calls prop onClick', () => {
-                    const props = {
-                        currentFilter: 'show_all',
-                        filter: 'show_completed',
-                        onLinkClick: () => ({})
-                    };
-                    spyOn(props, 'onLinkClick');
-                    const component = shallow(<FilterLink {...props} />);
-                    component.find('a').simulate('click');
-                    expect(props.onLinkClick).toHaveBeenCalledWith(props.filter);
+            it('is calls store dispatch', () => {
+                const component = shallow(<FilterLink {...props}></FilterLink>);
+                const link = component.find(Link);
+                link.props().onLinkClick();
+                expect(action).toEqual({
+                    type: 'SET_VISIBILITY_FILTER',
+                    filter: props.filter
                 });
             });
-            it('is rendered with href #', () => {
-                const props = {
-                    currentFilter: 'show_all',
-                    filter: 'show_completed',
-                    onClick: () => ({})
-                };
-                const component = shallow(<FilterLink {...props} />);
-                expect(component.props().href).toBe('#');
+        });
+
+        describe('isActive prop', () => {
+            describe('when filter is same as visibility filter', () => {
+                it('is set to true', () => {
+                    const component = shallow(<FilterLink {...props}></FilterLink>);
+                    expect(component.find(Link).props().isActive).toBe(true);
+                });
+            });
+
+            describe('when filter is not same as visibility filter', () => {
+                it('is set to true', () => {
+                    props.filter = 'not active filter';
+                    const component = shallow(<FilterLink {...props}></FilterLink>);
+                    expect(component.find(Link).props().isActive).toBe(false);
+                });
             });
         });
     });

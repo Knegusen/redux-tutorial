@@ -22,20 +22,13 @@ const onTodoClick = (id) => {
     });
 };
 
-const onFilterClick = (filter) => {
-    store.dispatch({
-        type: 'SET_VISIBILITY_FILTER',
-        filter
-    });
-};
-
 const render = () => {
     ReactDOM.render(
         <TodoApp
             {...store.getState()}
             onAdd={onAdd}
             onTodoClick={onTodoClick}
-            onFilterClick={onFilterClick}
+            store={store}
         />, document.getElementById('appContent'));
 };
 

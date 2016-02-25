@@ -13,7 +13,7 @@ describe('TodoApp', () => {
                 onFilterClick: (filter) => filter,
                 onAdd: () => ({})
             };
-            const component = renderTodo(shallow, [], funcs);
+            const component = renderTodo(shallow, [], undefined, funcs);
             const addTodoProps = component.find(AddTodo).props();
             expect(addTodoProps.onAdd).toBe(funcs.onAdd);
         });
@@ -21,14 +21,10 @@ describe('TodoApp', () => {
 
     describe('filter links', () => {
         it('is rendered with correct props', () => {
-            const funcs = {
-                onFilterClick: (filter) => filter
-            };
             const filter = 'FILTER';
-            const component = renderTodo(shallow, [], funcs, filter);
-            const filterLinksProps = component.find(FilterLinks).props();
-            expect(filterLinksProps.currentFilter).toBe(filter);
-            expect(filterLinksProps.onFilterClick).toBe(funcs.onFilterClick);
+            const store = {a: 'b'};
+            const component = renderTodo(shallow, [], store, undefined, filter);
+            expect(component.find(FilterLinks).props().store).toBe(store);
         });
     });
 
@@ -48,7 +44,7 @@ describe('TodoApp', () => {
                 onTodoClick: (todo) => todo
             };
 
-            const component = renderTodo(shallow, todos, funcs);
+            const component = renderTodo(shallow, todos, undefined, funcs);
             const props = component.find(TodoList).props();
             expect(props.todos).toEqual(todos);
             expect(props.filter).toEqual('SHOW_ALL');
@@ -57,11 +53,10 @@ describe('TodoApp', () => {
     });
 });
 
-function renderTodo(renderFunc, todos = [], funcs = {
+function renderTodo(renderFunc, todos = [], store = {}, funcs = {
     onAdd: () => ({}),
-    onTodoClick: () => ({}),
-    onFilterClick: () => ({})
+    onTodoClick: () => ({})
 }, filter = 'SHOW_ALL') {
-    return renderFunc(<TodoApp todos={todos} visibilityFilter={filter} onAdd={funcs.onAdd}
-                               onTodoClick={funcs.onTodoClick} onFilterClick={funcs.onFilterClick}/>);
+    return renderFunc(<TodoApp todos={todos} visibilityFilter={filter} store={store} onAdd={funcs.onAdd}
+                               onTodoClick={funcs.onTodoClick}/>);
 }

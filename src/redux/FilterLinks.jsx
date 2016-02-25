@@ -1,7 +1,7 @@
 import React from 'react';
 import FilterLink from './FilterLink';
 
-export default ({onFilterClick, currentFilter}) => {
+export default ({store}) => {
     const filterLinks = [
         {
             name: 'All',
@@ -20,9 +20,8 @@ export default ({onFilterClick, currentFilter}) => {
         {filterLinks.map((filterLink, index) => (
                 <span key={index}>
                     <FilterLink
-                        filter={filterLink.filter}
-                        onLinkClick={onFilterClick.bind(null, filterLink.filter)}
-                        currentFilter={currentFilter}>
+                        store={store}
+                        filter={filterLink.filter}>
                         { filterLink.name }
                     </FilterLink>{' '}
                 </span>

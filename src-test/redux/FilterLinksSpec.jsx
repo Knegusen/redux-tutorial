@@ -9,7 +9,7 @@ describe('FilterLinks', () => {
 
         it('is rendered with keys', () => {
             const props = {
-                onFilterClick: () => ({})
+                store: {store: 'store'}
             };
             const component = shallow(<FilterLinks {...props}/>);
             expect(component.find('span').get(0).key).toBe('0');
@@ -19,7 +19,7 @@ describe('FilterLinks', () => {
 
         it('has length 3', () => {
             const props = {
-                onFilterClick: () => ({})
+                store: {store: 'store'}
             };
             const component = shallow(<FilterLinks {...props}/>);
             expect(component.find(FilterLink).length).toBe(3);
@@ -27,22 +27,19 @@ describe('FilterLinks', () => {
 
         it('is populated correct', () => {
             const props = {
-                onFilterClick: (filter) => filter
-                ,
-                currentFilter: 'SHOW_ALL'
+                store: {store: 'store'}
             };
             const component = shallow(<FilterLinks {...props}/>);
             const filterLinks = component.find(FilterLink);
-            expectPropsForLinks(filterLinks, 0, 'All', 'SHOW_ALL');
-            expectPropsForLinks(filterLinks, 1, 'Active', 'SHOW_ACTIVE');
-            expectPropsForLinks(filterLinks, 2, 'Completed', 'SHOW_COMPLETED');
+            expectPropsForLinks(filterLinks, 0, 'All', 'SHOW_ALL', props.store);
+            expectPropsForLinks(filterLinks, 1, 'Active', 'SHOW_ACTIVE', props.store);
+            expectPropsForLinks(filterLinks, 2, 'Completed', 'SHOW_COMPLETED', props.store);
         });
     });
 });
 
-function expectPropsForLinks(filterLinks, index, name, filter) {
+function expectPropsForLinks(filterLinks, index, name, filter, store) {
     expect(filterLinks.at(index).props().children).toBe(name);
     expect(filterLinks.at(index).props().filter).toBe(filter);
-    expect(filterLinks.at(index).props().onLinkClick()).toEqual(filter);
-    expect(filterLinks.at(index).props().currentFilter).toEqual('SHOW_ALL');
+    expect(filterLinks.at(index).props().store).toBe(store);
 }
