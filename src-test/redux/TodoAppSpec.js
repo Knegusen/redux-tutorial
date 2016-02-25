@@ -1,7 +1,7 @@
 import React from 'react';
 import TodoApp from '../../src/redux/TodoApp';
 import FilterLinks from '../../src/redux/FilterLinks';
-import TodoList from '../../src/redux/TodoList';
+import VisibleTodoList from '../../src/redux/VisibleTodoList';
 import AddTodo from '../../src/redux/AddTodo';
 import { shallow } from 'enzyme';
 
@@ -9,54 +9,27 @@ describe('TodoApp', () => {
 
     describe('AddTodo', () => {
         it('is rendered with correct props', () => {
-            const funcs = {
-                onFilterClick: (filter) => filter,
-                onAdd: () => ({})
-            };
-            const component = renderTodo(shallow, [], undefined, funcs);
+            const store = {a: 'b'};
+            const component = shallow(<TodoApp store={store}/>);
             const addTodoProps = component.find(AddTodo).props();
-            expect(addTodoProps.onAdd).toBe(funcs.onAdd);
+            expect(addTodoProps.store).toBe(store);
         });
     });
 
     describe('filter links', () => {
         it('is rendered with correct props', () => {
-            const filter = 'FILTER';
             const store = {a: 'b'};
-            const component = renderTodo(shallow, [], store, undefined, filter);
+            const component = shallow(<TodoApp store={store}/>);
             expect(component.find(FilterLinks).props().store).toBe(store);
         });
     });
 
     describe('todo list', () => {
         it('is rendered with correct props', () => {
-            const todos = [
-                {
-                    id: 1,
-                    text: 'todo 1'
-                },
-                {
-                    id: 2,
-                    text: 'todo 2'
-                }
-            ];
-            const funcs = {
-                onTodoClick: (todo) => todo
-            };
-
-            const component = renderTodo(shallow, todos, undefined, funcs);
-            const props = component.find(TodoList).props();
-            expect(props.todos).toEqual(todos);
-            expect(props.filter).toEqual('SHOW_ALL');
-            expect(props.onTodoClick).toBe(funcs.onTodoClick);
+            const store = {a: 'b'};
+            const component = shallow(<TodoApp store={store}/>);
+            const props = component.find(VisibleTodoList).props();
+            expect(props.store).toEqual(store);
         });
     });
 });
-
-function renderTodo(renderFunc, todos = [], store = {}, funcs = {
-    onAdd: () => ({}),
-    onTodoClick: () => ({})
-}, filter = 'SHOW_ALL') {
-    return renderFunc(<TodoApp todos={todos} visibilityFilter={filter} store={store} onAdd={funcs.onAdd}
-                               onTodoClick={funcs.onTodoClick}/>);
-}

@@ -1,12 +1,12 @@
 import React from 'react';
 import FilterLinks from './FilterLinks';
-import TodoList from './TodoList';
+import VisibleTodoList from './VisibleTodoList';
 import AddTodo from './AddTodo';
 
-export default ({onAdd, store, onTodoClick, visibilityFilter, todos}) => (
+export default ({store}) => (
     <div>
-        <AddTodo onAdd={onAdd}/>
+        <AddTodo store={store}/>
         <FilterLinks store={store}/>
-        <TodoList todos={todos} filter={visibilityFilter} onTodoClick={onTodoClick}/>
+        <VisibleTodoList store={store}/>
     </div>
 );

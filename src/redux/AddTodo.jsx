@@ -1,8 +1,9 @@
 import React from 'react';
 
-export default ({onAdd}) => {
+export default ({store}) => {
 
     let input;
+    let nextTodoId = 0;
 
     return (
         <div>
@@ -10,7 +11,11 @@ export default ({onAdd}) => {
             <button
                 className='add'
                 onClick={() => {
-                    onAdd(input.value);
+                    store.dispatch({
+                        type: 'ADD_TODO',
+                        text: input.value,
+                        id: nextTodoId++
+                    });
                     input.value = '';
                 }}>
                 Add todo
