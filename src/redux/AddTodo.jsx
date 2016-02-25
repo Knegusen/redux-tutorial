@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({store}) => {
+const AddTodo = (props, { store }) => {
 
     let input;
     let nextTodoId = 0;
@@ -23,3 +23,9 @@ export default ({store}) => {
         </div>
     );
 };
+
+AddTodo.contextTypes = {
+    store: React.PropTypes.object
+};
+
+export default AddTodo;

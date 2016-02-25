@@ -4,7 +4,7 @@ import Link from './Link';
 export default React.createClass({
 
     componentDidMount(){
-        this.unsubscribe = this.props.store.subscribe(() => {
+        this.unsubscribe = this.context.store.subscribe(() => {
             this.forceUpdate();
         });
     },
@@ -13,15 +13,20 @@ export default React.createClass({
         this.unsubscribe();
     },
 
+    contextTypes: {
+        store: React.PropTypes.object
+    },
+
     render() {
-        const { children, filter, store } = this.props;
-        const state = store.getState();
+        const { store } = this.context;
+        const { children, filter } = this.props;
+        const state = {};
 
         return <Link
             onLinkClick={() => {
                 store.dispatch({
                     type: 'SET_VISIBILITY_FILTER',
-                    filter: filter
+                    filter
                 });
             }}
             isActive={filter === state.visibilityFilter}>

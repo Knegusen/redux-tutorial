@@ -7,7 +7,7 @@ describe('AddTodo', () => {
 
         let action;
 
-        const props = {
+        const context = {
             store: {
                 getState: () => ({}),
                 subscribe: () => () => ({}),
@@ -29,7 +29,7 @@ describe('AddTodo', () => {
 
         describe('onClick', () => {
             it('dispatches action addTodo with increased id', () => {
-                const component = mount(<AddTodo {...props}/>);
+                const component = mount(<AddTodo />, {context});
                 const text = 'value';
                 component.find('input').get(0).value = text;
                 component.find('button').simulate('click');
@@ -50,7 +50,7 @@ describe('AddTodo', () => {
             });
 
             it('clears input field', () => {
-                const component = mount(<AddTodo {...props}/>);
+                const component = mount(<AddTodo />, {context});
                 component.find('input').get(0).value = 'Test';
                 component.find('.add').simulate('click');
                 expect(component.find('input').get(0).value).toBe('');

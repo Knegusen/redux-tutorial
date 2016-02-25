@@ -4,7 +4,7 @@ import TodoList from './TodoList';
 export default React.createClass({
 
     componentDidMount(){
-        this.unsubscribe = this.props.store.subscribe(() => {
+        this.unsubscribe = this.context.store.subscribe(() => {
             this.forceUpdate();
         });
     },
@@ -13,8 +13,12 @@ export default React.createClass({
         this.unsubscribe();
     },
 
+    contextTypes: {
+        store: React.PropTypes.object
+    },
+
     render() {
-        const { store } = this.props;
+        const { store } = this.context;
         const state = store.getState();
         const todos = this.getVisibleTodos(state.todos, state.visibilityFilter);
         const todoListProps = {

@@ -25,7 +25,7 @@ describe('VisibleTodoList', () => {
             }
         ];
 
-        const props = {
+        const context = {
             store: {
                 getState: () => ({
                     visibilityFilter: visibilityFiler,
@@ -53,7 +53,7 @@ describe('VisibleTodoList', () => {
         describe('onTodoClick', () => {
             it('is set', () => {
                 const id = 1;
-                const component = shallow(<VisibleTodoList {...props}/>);
+                const component = shallow(<VisibleTodoList />, {context});
                 component.find(TodoList).props().onTodoClick(id);
                 expect(action).toEqual({
                     type: 'TOGGLE_TODO',
@@ -68,7 +68,7 @@ describe('VisibleTodoList', () => {
                 it('renders all todos', () => {
 
                     visibilityFiler = 'SHOW_ALL';
-                    const component = shallow(<VisibleTodoList {...props}/>);
+                    const component = shallow(<VisibleTodoList />, {context});
                     expect(component.find(TodoList).props().todos).toEqual(todos);
 
                 });
@@ -78,7 +78,7 @@ describe('VisibleTodoList', () => {
                 it('renders 1 todos', () => {
 
                     visibilityFiler = 'SHOW_COMPLETED';
-                    const component = shallow(<VisibleTodoList {...props}/>);
+                    const component = shallow(<VisibleTodoList />, {context});
                     expect(component.find(TodoList).props().todos).toEqual(todos.filter((todo => todo.completed)));
                 });
             });
@@ -86,7 +86,7 @@ describe('VisibleTodoList', () => {
                 it('renders 2 todos', () => {
 
                     visibilityFiler = 'SHOW_ACTIVE';
-                    const component = shallow(<VisibleTodoList {...props}/>);
+                    const component = shallow(<VisibleTodoList />, {context});
                     expect(component.find(TodoList).props().todos).toEqual(todos.filter((todo => !todo.completed)));
                 });
             });
