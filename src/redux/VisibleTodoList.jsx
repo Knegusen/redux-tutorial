@@ -14,13 +14,13 @@ export default React.createClass({
     },
 
     render() {
-        const props = this.props;
-        const state = props.store.getState();
+        const { store } = this.props;
+        const state = store.getState();
         const todos = this.getVisibleTodos(state.todos, state.visibilityFilter);
         const todoListProps = {
             todos,
             onTodoClick: (id) => {
-                props.store.dispatch({
+                store.dispatch({
                     type: 'TOGGLE_TODO',
                     id
                 });

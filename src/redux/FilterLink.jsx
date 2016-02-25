@@ -14,18 +14,18 @@ export default React.createClass({
     },
 
     render() {
-        const props = this.props;
-        const state = props.store.getState();
+        const { children, filter, store } = this.props;
+        const state = store.getState();
 
         return <Link
             onLinkClick={() => {
-                props.store.dispatch({
+                store.dispatch({
                     type: 'SET_VISIBILITY_FILTER',
-                    filter: props.filter
+                    filter: filter
                 });
             }}
-            isActive={props.filter === state.visibilityFilter}>
-            { props.children }
+            isActive={filter === state.visibilityFilter}>
+            { children }
         </Link>;
     }
 });
