@@ -18,18 +18,6 @@ describe('FilterLink', () => {
         }
     };
 
-    describe('componentDidMount', () => {
-        it('subscribes to store', () => {
-            //TODO: implement
-        });
-    });
-
-    describe('componentWillUnmount', () => {
-        it('unsubscribes to store', () => {
-            //TODO: implement
-        });
-    });
-
     describe('Link', () => {
 
         describe('onLinkClick', () => {

@@ -38,18 +38,6 @@ describe('VisibleTodoList', () => {
             }
         };
 
-        describe('componentDidMount', () => {
-            it('subscribes to store', () => {
-                //TODO: implement
-            });
-        });
-
-        describe('componentWillUnmount', () => {
-            it('unsubscribes to store', () => {
-                //TODO: implement
-            });
-        });
-
         describe('onTodoClick', () => {
             it('is set', () => {
                 const id = 1;

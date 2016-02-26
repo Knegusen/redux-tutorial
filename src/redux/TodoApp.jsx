@@ -3,10 +3,10 @@ import FilterLinks from './FilterLinks';
 import VisibleTodoList from './VisibleTodoList';
 import AddTodo from './AddTodo';
 
-export default ({store}) => (
+export default () => (
     <div>
-        <AddTodo store={store}/>
-        <FilterLinks store={store}/>
-        <VisibleTodoList store={store}/>
+        <AddTodo/>
+        <FilterLinks/>
+        <VisibleTodoList/>
     </div>
 );
