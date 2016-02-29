@@ -9,27 +9,22 @@ describe('TodoApp', () => {
 
     describe('AddTodo', () => {
         it('is rendered with correct props', () => {
-            const store = {a: 'b'};
-            const component = shallow(<TodoApp store={store}/>);
-            const addTodoProps = component.find(AddTodo).props();
-            expect(addTodoProps.store).toBe(store);
+            const component = shallow(<TodoApp />);
+            expect(component.find(AddTodo).length).toBe(1);
         });
     });
 
     describe('filter links', () => {
-        it('is rendered with correct props', () => {
-            const store = {a: 'b'};
-            const component = shallow(<TodoApp store={store}/>);
-            expect(component.find(FilterLinks).props().store).toBe(store);
+        it('is rendered', () => {
+            const component = shallow(<TodoApp />);
+            expect(component.find(FilterLinks).length).toBe(1);
         });
     });
 
     describe('todo list', () => {
         it('is rendered with correct props', () => {
-            const store = {a: 'b'};
-            const component = shallow(<TodoApp store={store}/>);
-            const props = component.find(VisibleTodoList).props();
-            expect(props.store).toEqual(store);
+            const component = shallow(<TodoApp />);
+            expect(component.find(VisibleTodoList).length).toEqual(1);
         });
     });
 });
