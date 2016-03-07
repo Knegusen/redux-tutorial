@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     addTodo, toggleTodo, setVisibilityFilter,
     ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER
@@ -36,7 +35,7 @@ describe('Actions', () => {
         it('returns correct type', () => {
             expect(setVisibilityFilter().type).toBe(SET_VISIBILITY_FILTER);
         });
-        it('returns correct type', () => {
+        it('returns correct filter', () => {
             const filter = 'filter';
             expect(setVisibilityFilter(filter).filter).toBe(filter);
         });

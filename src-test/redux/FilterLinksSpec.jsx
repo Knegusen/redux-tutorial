@@ -32,7 +32,7 @@ describe('FilterLinks', () => {
     });
 });
 
-function expectPropsForLinks(filterLinks, index, name, filter, store) {
+function expectPropsForLinks(filterLinks, index, name, filter) {
     expect(filterLinks.at(index).props().children).toBe(name);
     expect(filterLinks.at(index).props().filter).toBe(filter);
 }

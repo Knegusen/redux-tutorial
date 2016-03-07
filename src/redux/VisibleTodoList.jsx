@@ -22,7 +22,7 @@ function getVisibleTodos(todos, filter) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    onTodoClick: (id) => {
+    onTodoClick(id){
         dispatch(toggleTodo(id));
     }
 });
