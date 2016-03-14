@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TodoApp from '../redux/TodoApp';
+import TodoApp from './TodoApp';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import AppReducer from '../redux/AppReducer';
+import AppReducer from './AppReducer';
 
 const store = createStore(AppReducer, undefined, window.devToolsExtension ? window.devToolsExtension() : undefined);
 

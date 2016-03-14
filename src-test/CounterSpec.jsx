@@ -1,4 +1,4 @@
-import Counter from '../../src/redux/Counter';
+import Counter from '../src/Counter';
 import React from 'react';
 import { shallow } from 'enzyme';
 

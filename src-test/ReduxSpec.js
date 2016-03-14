@@ -6,7 +6,7 @@ import {
     removeCounter,
     incrementCounter,
     toggleTodo
-} from '../../src/redux/Redux';
+} from '../src/Redux';
 
 describe('Redux', () => {
     describe('counter', () => {

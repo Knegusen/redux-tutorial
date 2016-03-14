@@ -1,5 +1,5 @@
 import React from 'react';
-import Todo from '../../src/redux/Todo';
+import Todo from '../src/Todo';
 import { shallow } from 'enzyme';
 
 describe('Todo', () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import AddTodo from '../../src/redux/AddTodo';
+import AddTodo from '../src/AddTodo';
 import { mount } from 'enzyme';
 
 describe('AddTodo', () => {

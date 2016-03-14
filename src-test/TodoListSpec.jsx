@@ -1,6 +1,6 @@
 import React from 'react';
-import TodoList from '../../src/redux/TodoList';
-import Todo from '../../src/redux/Todo';
+import TodoList from '../src/TodoList';
+import Todo from '../src/Todo';
 import { shallow } from 'enzyme';
 
 describe('TodoList', () => {

@@ -1,4 +1,4 @@
-import combineReducers from '../../src/redux/CombineReducers';
+import combineReducers from '../src/CombineReducers';
 
 describe('combineReducers', () => {
     it('works', () => {

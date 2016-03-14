@@ -1,4 +1,4 @@
-import visibilityFilterReduce from '../../src/redux/VisibilityFilterReducer';
+import visibilityFilterReduce from '../src/VisibilityFilterReducer';
 
 describe('VisibilityFilterReducer', () => {
 

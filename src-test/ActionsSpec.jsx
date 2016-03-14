@@ -1,7 +1,7 @@
 import {
     addTodo, toggleTodo, setVisibilityFilter,
     ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER
-} from '../../src/redux/Actions';
+} from '../src/Actions';
 
 describe('Actions', () => {
     describe('add todo', () => {

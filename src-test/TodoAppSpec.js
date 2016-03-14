@@ -1,8 +1,8 @@
 import React from 'react';
-import TodoApp from '../../src/redux/TodoApp';
-import FilterLinks from '../../src/redux/FilterLinks';
-import VisibleTodoList from '../../src/redux/VisibleTodoList';
-import AddTodo from '../../src/redux/AddTodo';
+import TodoApp from '../src/TodoApp';
+import FilterLinks from '../src/FilterLinks';
+import VisibleTodoList from '../src/VisibleTodoList';
+import AddTodo from '../src/AddTodo';
 import { shallow } from 'enzyme';
 
 describe('TodoApp', () => {

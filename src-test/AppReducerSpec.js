@@ -1,4 +1,4 @@
-import appReduce from '../../src/redux/AppReducer';
+import appReduce from '../src/AppReducer';
 
 describe('AppReducer', () => {
     it('works for todos', () => {

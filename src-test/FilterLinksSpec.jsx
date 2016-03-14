@@ -1,6 +1,6 @@
 import React from 'react';
-import FilterLinks from '../../src/redux/FilterLinks';
-import FilterLink from '../../src/redux/FilterLink';
+import FilterLinks from '../src/FilterLinks';
+import FilterLink from '../src/FilterLink';
 import { shallow } from 'enzyme';
 
 describe('FilterLinks', () => {

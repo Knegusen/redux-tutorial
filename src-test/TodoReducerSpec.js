@@ -1,4 +1,4 @@
-import todosReduce from '../../src/redux/TodosReducer';
+import todosReduce from '../src/TodosReducer';
 
 describe('TodoReducer', () => {
     it('can add todo', () => {
